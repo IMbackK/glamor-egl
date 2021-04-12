@@ -21,11 +21,8 @@
 # Process this file with autoconf to produce a configure script
 
 # Initialize Autoconf
-AC_PREREQ([2.60])
-AC_INIT([drihybris],
-        [0.1.0],
-        [https://github.com/NotKit/drihybris],
-        [drihybris])
+AC_PREREQ([2.71])
+AC_INIT([drihybris],[0.1.0],[https://github.com/NotKit/drihybris],[drihybris])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR(.)
@@ -35,14 +32,14 @@ AC_USE_SYSTEM_EXTENSIONS
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 
 # Require xorg-macros: XORG_DEFAULT_OPTIONS
-m4_ifndef([XORG_MACROS_VERSION],
-          [m4_fatal([must install xorg-macros 1.3 or later before running autoconf/autogen])])
-XORG_MACROS_VERSION(1.3)
+#m4_ifndef([XORG_MACROS_VERSION],
+#          [m4_fatal([must install xorg-macros 1.3 or later before running autoconf/autogen])])
+#XORG_MACROS_VERSION(1.3)
 XORG_DEFAULT_OPTIONS
 
 # Initialize libtool
 AC_DISABLE_STATIC
-AC_PROG_LIBTOOL
+LT_INIT
 
 AH_TOP([#include "xorg-server.h"])
 
@@ -109,6 +106,7 @@ XORG_DRIVER_CHECK_EXT(XV, videoproto)
 
 # Obtain compiler/linker options for the driver dependencies
 PKG_CHECK_MODULES(XORG, [xorg-server >= 1.4.99.901] xproto fontsproto $REQUIRED_MODULES)
+PKG_CHECK_MODULES(LIBDRM, [libdrm])
 
 # Checks for libraries.
 

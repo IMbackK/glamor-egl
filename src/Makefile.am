@@ -3,7 +3,7 @@ module_LTLIBRARIES = libglamoregl.la
 
 libglamor_la_LIBADD = $(GLAMOR_LIBS)
 
-AM_CFLAGS = $(CWARNFLAGS) $(XORG_CFLAGS) $(GLAMOR_CFLAGS)
+AM_CFLAGS = $(CWARNFLAGS) $(LIBDRM_CFLAGS) $(XORG_CFLAGS) $(GLAMOR_CFLAGS) 
 
 libglamor_la_SOURCES = \
 	glamor.c \
